@@ -92,7 +92,7 @@ print(all_centers)
 roi_crop = im[all_centers[0][1]:all_centers[3][1],all_centers[0][0]:all_centers[3][0]]
 imgray_crop = cv2.cvtColor(roi_crop, cv2.COLOR_BGR2GRAY)
 retCrop, threshCrop = cv2.threshold(imgray_crop, 50, 255, 0)
-cv2.imshow("Original ",im)
+# cv2.imshow("Original ",im)
 # cv2.imshow("croping", roi_crop)
 # cv2.imshow("Original Crop ",roi_crop)
 # cv2.imshow("ROI Gray :: Step 1", imgray_crop)
@@ -118,8 +118,12 @@ height_interval = heightCrop / num_boxes_height  # Pembagi tinggi
 # Inisialisasi array untuk menyimpan hasil analisis
 result = np.zeros((num_boxes_height, num_boxes_width), dtype=np.int_)
 
+no_soal = [0 for _ in range(60)] #untuk menyimpan box/koordinat bernilai A-E
+
+pg_look = ["","A","B","C","D","E"]
 # Loop melalui setiap baris
 for i in range(num_boxes_height):
+    # print("ini i ke ",i)
     # Loop melalui setiap kotak dalam baris
     for j in range(num_boxes_width):
         # Potong kotak dari gambar
@@ -140,12 +144,68 @@ for i in range(num_boxes_height):
         if black_pixels > 25:  # Ubah ambang batas sesuai kebutuhan
         #     result[i, j] = 1
         #     # Gambar kotak dengan warna hijau
-              cv2.rectangle(roi_crop, (start_x+2, start_y+2), (end_x-2, end_y-2), (0, 255, 0), 1)
-
-print("height :", height)
-print("height cell :", height/53)
-print("width :", width)
-print("width cell :", width/36)
+              if 10 < i < 52:
+                print("Baris,Kolom ",{i},{j})
+                cv2.rectangle(roi_crop, (start_x+2, start_y+2), (end_x-2, end_y-2), (0, 255, 0), 1)
+        
+        # ambil Data Jawaban dan komparasi nilai jawaban  ke array pg_look
+        if 39 < i < 45:
+             # assgin baris jawaban 1
+            if 0 < j < 6:
+                if black_pixels > 55:
+                    cv2.rectangle(roi_crop, (start_x+2, start_y+2), (end_x-2, end_y-2), (0, 0, 255), 1)
+                    no_soal[i-40] = pg_look[j]
+            if 6 < j < 12:
+                if black_pixels > 55:
+                    cv2.rectangle(roi_crop, (start_x+2, start_y+2), (end_x-2, end_y-2), (0, 0, 255), 1)
+                    no_soal[(i-40)+10] = pg_look[j-6]
+            if 12 < j < 18:
+                if black_pixels > 55:
+                    cv2.rectangle(roi_crop, (start_x+2, start_y+2), (end_x-2, end_y-2), (0, 0, 255), 1)
+                    no_soal[(i-40)+20] = pg_look[j-12]
+            if 18 < j < 24:
+                if black_pixels > 55:
+                    cv2.rectangle(roi_crop, (start_x+2, start_y+2), (end_x-2, end_y-2), (0, 0, 255), 1)
+                    no_soal[(i-40)+30] = pg_look[j-18]
+            if 24 < j < 30:
+                if black_pixels > 55:
+                    cv2.rectangle(roi_crop, (start_x+2, start_y+2), (end_x-2, end_y-2), (0, 0, 255), 1)
+                    no_soal[(i-40)+40] = pg_look[j-24]
+            if 30 < j < 36:
+                if black_pixels > 55:
+                    cv2.rectangle(roi_crop, (start_x+2, start_y+2), (end_x-2, end_y-2), (0, 0, 255), 1)
+                    no_soal[(i-40)+50] = pg_look[j-30]
+                    
+        if 45 < i < 51:
+             # assgin baris jawaban 1
+            if 0 < j < 6:
+                if black_pixels > 55:
+                    cv2.rectangle(roi_crop, (start_x+2, start_y+2), (end_x-2, end_y-2), (0, 0, 255), 1)
+                    no_soal[i-41] = pg_look[j]
+            if 6 < j < 12:
+                if black_pixels > 55:
+                    cv2.rectangle(roi_crop, (start_x+2, start_y+2), (end_x-2, end_y-2), (0, 0, 255), 1)
+                    no_soal[(i-41)+10] = pg_look[j-6]
+            if 12 < j < 18:
+                if black_pixels > 55:
+                    cv2.rectangle(roi_crop, (start_x+2, start_y+2), (end_x-2, end_y-2), (0, 0, 255), 1)
+                    no_soal[(i-41)+20] = pg_look[j-12]
+            if 18 < j < 24:
+                if black_pixels > 55:
+                    cv2.rectangle(roi_crop, (start_x+2, start_y+2), (end_x-2, end_y-2), (0, 0, 255), 1)
+                    no_soal[(i-41)+30] = pg_look[j-18]
+            if 24 < j < 30:
+                if black_pixels > 55:
+                    cv2.rectangle(roi_crop, (start_x+2, start_y+2), (end_x-2, end_y-2), (0, 0, 255), 1)
+                    no_soal[(i-41)+40] = pg_look[j-24]
+            if 30 < j < 36:
+                if black_pixels > 55:
+                    cv2.rectangle(roi_crop, (start_x+2, start_y+2), (end_x-2, end_y-2), (0, 0, 255), 1)
+                    no_soal[(i-41)+50] = pg_look[j-30]
+# print("height :", height)
+# print("height cell :", height/53)
+# print("width :", width)
+# print("width cell :", width/36)
 
 
 # print("height crop : ",heightCrop)
@@ -154,5 +214,7 @@ print("width cell :", width/36)
 # cv2.imshow("ROI Gray :: Step 3", imgray_crop)
 # cv2.imshow("Mapping :: Step 2", threshCrop)
 cv2.imshow("ROI Crop Pixel Check :: Step 3", roi_crop)
+print("Jawaban Peserta")
+print(no_soal)
 cv2.waitKey(0)
 cv2.destroyAllWindows()

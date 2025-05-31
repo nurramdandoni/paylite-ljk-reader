@@ -3,7 +3,7 @@ import numpy as np
 import imutils
 
 # Baca citra
-img = cv2.imread('LJK_Paylite_Edu.jpg')
+img = cv2.imread('LJK_Paylite_Edu_v10.jpg')
 
 # Tampilkan hasil resize
 height, width = img.shape[:2]

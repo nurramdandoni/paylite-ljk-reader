@@ -81,3 +81,9 @@ deactivate
 #Web Version
 - Comming Soon in 2025
 - Image registry
+
+Spoiler :
+
+![alt text](image-3.png)
+
+![alt text](image-4.png)

@@ -80,3 +80,4 @@ deactivate
 
 #Web Version
 - Comming Soon in 2025
+- Image registry

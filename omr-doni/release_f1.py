@@ -1,6 +1,6 @@
 import numpy as np
 import cv2
-img = cv2.imread('LJK_Paylite_Edu_v21s.jpg')
+img = cv2.imread('LJK_Paylite_Edu_v21s.jpg') # success karena lurus
 # Tampilkan hasil resize
 height, width = img.shape[:2]
 max_height = 700
@@ -211,8 +211,8 @@ for i in range(num_boxes_height):
 # print("height crop : ",heightCrop)
 # print("width crop : ",widthCrop)
 # cv2.imshow("Ori", im)
+cv2.imshow("Mapping :: Step 2", threshCrop)
 # cv2.imshow("ROI Gray :: Step 3", imgray_crop)
-# cv2.imshow("Mapping :: Step 2", threshCrop)
 cv2.imshow("ROI Crop Pixel Check :: Step 3", roi_crop)
 print("Jawaban Peserta")
 print(no_soal)

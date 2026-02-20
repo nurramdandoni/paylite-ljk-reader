@@ -153,8 +153,16 @@ for i in range(num_boxes_height):
             # cv2.imshow("cut",imgray2)
         black_pixels = np.sum(thresh2 == 0) #hitung jumlah pixel hitam dalam kotak thresh2
         # print("piksel",black_pixels)
-        param_piksel_count = 25
-        if black_pixels > param_piksel_count:  # Ubah ambang batas sesuai kebutuhan
+        # param_piksel_count = 25
+        
+        # HITUNG LUAS KOTAK
+        box_width = end_x - start_x
+        box_height = end_y - start_y
+        total_pixels = box_width * box_height
+        
+        # 50% threshold
+        threshold_50 = total_pixels * 0.5
+        if black_pixels > threshold_50:  # Ubah ambang batas sesuai kebutuhan
         #     # Gambar kotak dengan warna hijau
               if 10 < i < 52:
                 cv2.rectangle(roi_crop, (start_x+2, start_y+2), (end_x-2, end_y-2), (0, 255, 0), 1)
@@ -163,32 +171,32 @@ for i in range(num_boxes_height):
         if 39 < i < 45:
              # assgin baris jawaban 1
             if 0 < j < 6:
-                if black_pixels > param_piksel_count:
+                if black_pixels > threshold_50:
                     cv2.rectangle(roi_crop, (start_x+2, start_y+2), (end_x-2, end_y-2), (0, 0, 255), 1)
                     no_soal[i-40] = pg_look[j]
                     pixel_opsi_soal[i-40][j-1] = black_pixels
             if 6 < j < 12:
-                if black_pixels > param_piksel_count:
+                if black_pixels > threshold_50:
                     cv2.rectangle(roi_crop, (start_x+2, start_y+2), (end_x-2, end_y-2), (0, 0, 255), 1)
                     no_soal[(i-40)+10] = pg_look[j-6]
                     pixel_opsi_soal[(i-40)+10][j-7] = black_pixels
             if 12 < j < 18:
-                if black_pixels > param_piksel_count:
+                if black_pixels > threshold_50:
                     cv2.rectangle(roi_crop, (start_x+2, start_y+2), (end_x-2, end_y-2), (0, 0, 255), 1)
                     no_soal[(i-40)+20] = pg_look[j-12]
                     pixel_opsi_soal[(i-40)+20][j-13] = black_pixels
             if 18 < j < 24:
-                if black_pixels > param_piksel_count:
+                if black_pixels > threshold_50:
                     cv2.rectangle(roi_crop, (start_x+2, start_y+2), (end_x-2, end_y-2), (0, 0, 255), 1)
                     no_soal[(i-40)+30] = pg_look[j-18]
                     pixel_opsi_soal[(i-40)+30][j-19] = black_pixels
             if 24 < j < 30:
-                if black_pixels > param_piksel_count:
+                if black_pixels > threshold_50:
                     cv2.rectangle(roi_crop, (start_x+2, start_y+2), (end_x-2, end_y-2), (0, 0, 255), 1)
                     no_soal[(i-40)+40] = pg_look[j-24]
                     pixel_opsi_soal[(i-40)+40][j-25] = black_pixels
             if 30 < j < 36:
-                if black_pixels > param_piksel_count:
+                if black_pixels > threshold_50:
                     cv2.rectangle(roi_crop, (start_x+2, start_y+2), (end_x-2, end_y-2), (0, 0, 255), 1)
                     no_soal[(i-40)+50] = pg_look[j-30]
                     pixel_opsi_soal[(i-40)+50][j-31] = black_pixels
@@ -196,32 +204,32 @@ for i in range(num_boxes_height):
         if 45 < i < 51:
              # assgin baris jawaban 1
             if 0 < j < 6:
-                if black_pixels > param_piksel_count:
+                if black_pixels > threshold_50:
                     cv2.rectangle(roi_crop, (start_x+2, start_y+2), (end_x-2, end_y-2), (0, 0, 255), 1)
                     no_soal[i-41] = pg_look[j]
                     pixel_opsi_soal[i-41][j-1] = black_pixels
             if 6 < j < 12:
-                if black_pixels > param_piksel_count:
+                if black_pixels > threshold_50:
                     cv2.rectangle(roi_crop, (start_x+2, start_y+2), (end_x-2, end_y-2), (0, 0, 255), 1)
                     no_soal[(i-41)+10] = pg_look[j-6]
                     pixel_opsi_soal[(i-41)+10][j-7] = black_pixels
             if 12 < j < 18:
-                if black_pixels > param_piksel_count:
+                if black_pixels > threshold_50:
                     cv2.rectangle(roi_crop, (start_x+2, start_y+2), (end_x-2, end_y-2), (0, 0, 255), 1)
                     no_soal[(i-41)+20] = pg_look[j-12]
                     pixel_opsi_soal[(i-41)+20][j-13] = black_pixels
             if 18 < j < 24:
-                if black_pixels > param_piksel_count:
+                if black_pixels > threshold_50:
                     cv2.rectangle(roi_crop, (start_x+2, start_y+2), (end_x-2, end_y-2), (0, 0, 255), 1)
                     no_soal[(i-41)+30] = pg_look[j-18]
                     pixel_opsi_soal[(i-41)+30][j-19] = black_pixels
             if 24 < j < 30:
-                if black_pixels > param_piksel_count:
+                if black_pixels > threshold_50:
                     cv2.rectangle(roi_crop, (start_x+2, start_y+2), (end_x-2, end_y-2), (0, 0, 255), 1)
                     no_soal[(i-41)+40] = pg_look[j-24]
                     pixel_opsi_soal[(i-41)+40][j-25] = black_pixels
             if 30 < j < 36:
-                if black_pixels > param_piksel_count:
+                if black_pixels > threshold_50:
                     cv2.rectangle(roi_crop, (start_x+2, start_y+2), (end_x-2, end_y-2), (0, 0, 255), 1)
                     no_soal[(i-41)+50] = pg_look[j-30]
                     pixel_opsi_soal[(i-41)+50][j-31] = black_pixels
@@ -245,14 +253,28 @@ benar = 0
 salah = 0
 display = [0 for _ in range(total_soal)]
 for i in range(len(kunci_jawaban)):
+    # data = pixel_opsi_soal[i]
+    # index_jawaban = data.index(max(data))
+    # no_soal[i] = pg_look[index_jawaban+1]
+    # display[i] = pg_look[index_jawaban+1]
+    # if no_soal[i] == kunci_jawaban[i]:
+    #     benar += 1
+    # else:
+    #     salah += 1
     data = pixel_opsi_soal[i]
-    index_jawaban = data.index(max(data))
-    no_soal[i] = pg_look[index_jawaban+1]
-    display[i] = pg_look[index_jawaban+1]
-    if no_soal[i] == kunci_jawaban[i]:
-        benar += 1
+    max_value = max(data)
+
+    if max_value == 0:
+        no_soal[i] = "-"   # kosong
+        display[i] = "-"
     else:
-        salah += 1
+        index_jawaban = data.index(max_value)
+        no_soal[i] = pg_look[index_jawaban+1]
+        display[i] = pg_look[index_jawaban+1]
+        if no_soal[i] == kunci_jawaban[i]:
+            benar += 1
+        else:
+            salah += 1
 print("Jawaban Peserta :", display)
 # print(display)
 print("total Benar : ",benar)
